@@ -42,11 +42,30 @@ describe('Turn', () => {
     expect(returnedCard).to.deep.equal(card1);
   })
 
-  it.skip('should have a method that checks whether a guess matches the correct answer', () => {
+  it('should have a method that checks whether a guess matches the correct answer', () => {
+    let card1 = new Card(1,'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
+    let turn1 = new Turn('Avocado Toast', card1);
+    let turn2 = new Turn('sea otter', card1);
 
+    let result1 = turn1.evaluateGuess();
+    let result2 = turn2.evaluateGuess();
+
+    expect(result1).to.be.false;
+    expect(result2).to.be.true;
   })
 
-  it.skip('should have a method that returns correct or incorrect depending on the guess', () => {
+  it('should have a method that returns correct or incorrect depending on the guess', () => {
+    let card1 = new Card(1,'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
+    let turn1 = new Turn('Avocado Toast', card1);
+    let turn2 = new Turn('sea otter', card1);
 
+    let result1 = turn1.evaluateGuess();
+    let result2 = turn2.evaluateGuess();
+
+    let result1Message = turn1.giveFeedback(result1);
+    let result2Message = turn2.giveFeedback(result2);
+
+    expect(result1Message).to.equal('incorrect');
+    expect(result2Message).to.equal('correct')
   })
 })
