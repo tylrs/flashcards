@@ -46,7 +46,44 @@ describe('Round', () => {
     expect(currentCard1).to.deep.equal(card1);
   })
 
-  it.skip('should have a takeTurn method', () => {
+  it('should have a takeTurn method which creates new turn instance', () => {
+    const round1 = new Round(deck1);
+
+    round1.takeTurn('potato');
+
+    expect(round1.turn).to.be.an.instanceOf(Turn);
+  })
+
+  it('should have a takeTurn method which takes in a user guess', () => {
+    const round1 = new Round(deck1);
+
+    round1.takeTurn('potato');
+    let userGuess = round1.turn.returnGuess();
+
+    expect(userGuess).to.equal('potato');
+  })
+
+  it('should have a takeTurn method which updates turn count', () => {
+    const round1 = new Round(deck1);
+
+    round1.takeTurn('potato');
+
+    expect(round1.turns).to.equal(1);
+  })
+
+  it.skip('should have a takeTurn method which updates current card to next card', () => {
+    const round1 = new Round();
+
+    expect(round1).to.be.an.instanceOf(Round);
+  })
+
+  it.skip('should have a takeTurn method which stores incorrect guesses', () => {
+    const round1 = new Round();
+
+    expect(round1).to.be.an.instanceOf(Round);
+  })
+
+  it.skip('should have a takeTurn method which returns feedback', () => {
     const round1 = new Round();
 
     expect(round1).to.be.an.instanceOf(Round);
