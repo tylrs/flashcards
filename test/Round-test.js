@@ -16,29 +16,34 @@ describe('Round', () => {
     deck1 = new Deck([card1, card2, card3]);
   })
   it('should be an instance of the Round class', () => {
-    const round1 = new Round();
+    const round1 = new Round(deck1);
 
     expect(round1).to.be.an.instanceOf(Round);
   })
 
   it('should have a turns counter with a default value of 0', () => {
-    const round1 = new Round();
+    const round1 = new Round(deck1);
 
     expect(round1.turns).to.equal(0);
   })
 
   it('should take in a new deck and store it', () => {
     const round1 = new Round(deck1);
-    console.log("look here", deck1);
-    console.log("card", card1);
 
     expect(round1.deck).to.be.an.instanceOf(Deck);
   })
 
-  it.skip('should have a returnCurrentCard method', () => {
-    const round1 = new Round();
+  it('should start out with the current card being the first card', () => {
+    const round1 = new Round(deck1);
 
-    expect(round1).to.be.an.instanceOf(Round);
+    expect(round1.currentCard).to.deep.equal(card1);
+  })
+
+  it('should have a returnCurrentCard method', () => {
+    const round1 = new Round(deck1);
+    let currentCard1 = round1.returnCurrentCard()
+
+    expect(currentCard1).to.deep.equal(card1);
   })
 
   it.skip('should have a takeTurn method', () => {
