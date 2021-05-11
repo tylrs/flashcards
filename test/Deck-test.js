@@ -68,6 +68,6 @@ describe('Deck', () => {
     let deck1 = new Deck(cards);
     let deckCount = deck1.countCards();
 
-    expect(deckCount)to.equal
+    expect(deckCount).to.equal(3);
   })
 })
