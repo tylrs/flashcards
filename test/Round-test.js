@@ -132,7 +132,6 @@ describe('Round', () => {
     let percentage = round1.calculatePercentageCorrect();
 
     let message = round1.endRound(percentage);
-    console.log(message);
 
     expect(message).to.equal(`** Round over! ** You answered ${100/3}% of the questions correctly!`);
   })
