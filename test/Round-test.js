@@ -5,10 +5,10 @@ const Turn = require('../src/Turn.js');
 const Round = require('../src/Round.js');
 
 describe('Round', () => {
-    let card1;
-    let card2;
-    let card3;
-    let deck1;
+  let card1;
+  let card2;
+  let card3;
+  let deck1;
   beforeEach('Setup', () => {
     card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
     card2 = new Card(2, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
