@@ -110,7 +110,7 @@ describe('Round', () => {
     expect(feedback).to.equal('incorrect');
   })
 
-  it('should have a calculatePercentageCorrect method', () => {
+  it('should be able to calculate the percentage of correct answers', () => {
     const round1 = new Round(deck1);
 
     round1.takeTurn('potato');
@@ -122,9 +122,18 @@ describe('Round', () => {
     expect(percentage).to.equal(100/3);
   })
 
-  it.skip('should have an endRound method', () => {
-    const round1 = new Round();
+  it('should have an endRound method', () => {
+    const round1 = new Round(deck1);
 
-    expect(round1).to.be.an.instanceOf(Round);
+    round1.takeTurn('potato');
+    round1.takeTurn('potato');
+    round1.takeTurn('Fitzgerald');
+
+    let percentage = round1.calculatePercentageCorrect();
+
+    let message = round1.endRound(percentage);
+    console.log(message);
+
+    expect(message).to.equal(`** Round over! ** You answered ${100/3}% of the questions correctly!`);
   })
 })
