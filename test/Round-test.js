@@ -15,6 +15,7 @@ describe('Round', () => {
     card3 = new Card(3, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
     deck1 = new Deck([card1, card2, card3]);
   })
+
   it('should be an instance of the Round class', () => {
     const round1 = new Round(deck1);
 
@@ -93,7 +94,15 @@ describe('Round', () => {
     expect(round1.incorrectGuesses[0]).to.equal(1);
   })
 
-  it('should have a takeTurn method which returns feedback', () => {
+  it('should have a takeTurn method which returns feedback if its correct', () => {
+    const round1 = new Round(deck1);
+
+    let feedback = round1.takeTurn('sea otter');
+
+    expect(feedback).to.equal('correct');
+  })
+
+  it('should have a takeTurn method which returns feedback if its incorrect', () => {
     const round1 = new Round(deck1);
 
     let feedback = round1.takeTurn('potato');
@@ -101,13 +110,19 @@ describe('Round', () => {
     expect(feedback).to.equal('incorrect');
   })
 
-  it.skip('should have a calculatePercentageCorrect method', () => {
-    const round1 = new Round();
+  it('should have a calculatePercentageCorrect method', () => {
+    const round1 = new Round(deck1);
 
-    expect(round1).to.be.an.instanceOf(Round);
+    round1.takeTurn('potato');
+    round1.takeTurn('potato');
+    round1.takeTurn('Fitzgerald');
+
+    let percentage = round1.calculatePercentageCorrect();
+
+    expect(percentage).to.equal(100/3);
   })
 
-  it.skip('should have a endRound method', () => {
+  it.skip('should have an endRound method', () => {
     const round1 = new Round();
 
     expect(round1).to.be.an.instanceOf(Round);
