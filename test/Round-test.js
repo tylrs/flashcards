@@ -119,7 +119,7 @@ describe('Round', () => {
 
     let percentage = round1.calculatePercentageCorrect();
 
-    expect(percentage).to.equal(100/3);
+    expect(percentage).to.equal(Math.floor(100/3));
   })
 
   it('should have an endRound method', () => {
@@ -133,6 +133,6 @@ describe('Round', () => {
 
     let message = round1.endRound(percentage);
 
-    expect(message).to.equal(`** Round over! ** You answered ${100/3}% of the questions correctly!`);
+    expect(message).to.equal(`** Round over! ** You answered ${Math.floor(100/3)}% of the questions correctly!`);
   })
 })
