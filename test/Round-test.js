@@ -71,22 +71,34 @@ describe('Round', () => {
     expect(round1.turns).to.equal(1);
   })
 
-  it.skip('should have a takeTurn method which updates current card to next card', () => {
-    const round1 = new Round();
+  it('should have a takeTurn method which updates current card to next card', () => {
+    const round1 = new Round(deck1);
 
-    expect(round1).to.be.an.instanceOf(Round);
+    round1.takeTurn('potato');
+
+    expect(round1.currentCard).to.deep.equal(card2);
   })
 
-  it.skip('should have a takeTurn method which stores incorrect guesses', () => {
-    const round1 = new Round();
+  it('should have an empty array for incorrect guesses', () => {
+    const round1 = new Round(deck1);
 
-    expect(round1).to.be.an.instanceOf(Round);
+    expect(round1.incorrectGuesses).to.be.an('array');
   })
 
-  it.skip('should have a takeTurn method which returns feedback', () => {
-    const round1 = new Round();
+  it('should have a takeTurn method which stores incorrect guesses', () => {
+    const round1 = new Round(deck1);
 
-    expect(round1).to.be.an.instanceOf(Round);
+    round1.takeTurn('potato');
+
+    expect(round1.incorrectGuesses[0]).to.equal(1);
+  })
+
+  it('should have a takeTurn method which returns feedback', () => {
+    const round1 = new Round(deck1);
+
+    let feedback = round1.takeTurn('potato');
+
+    expect(feedback).to.equal('incorrect');
   })
 
   it.skip('should have a calculatePercentageCorrect method', () => {
