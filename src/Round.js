@@ -25,7 +25,7 @@ class Round {
   }
 
   calculatePercentageCorrect() {
-    let percentCorrect = Math.floor((1-this.incorrectGuesses.length / this.turns) * 100);
+    let percentCorrect = Math.floor((1 - this.incorrectGuesses.length / this.turns) * 100);
     return percentCorrect;
   }
 
