@@ -18,8 +18,8 @@ class Game {
     })
     let deck1 = new Deck(cards);
     this.currentRound = new Round(deck1);
-    printMessage(deck1, this.currentRound);
-    printQuestion(this.currentRound);
+    this.printMessage(deck1, this.currentRound);
+    this.printQuestion(this.currentRound);
   }
 
   printMessage(deck, round) {

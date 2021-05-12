@@ -42,7 +42,7 @@ describe('Game', () => {
   })
 
   it('should have a start method which creates new cards', () => {
-    const game1 = new Game(round1);
+    const game1 = new Game();
 
     game1.start(questions);
 
