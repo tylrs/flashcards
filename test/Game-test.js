@@ -11,7 +11,7 @@ describe('Game', () => {
   let card3;
   let deck1;
   let round1;
-  
+
   beforeEach('Setup', () => {
     card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
     card2 = new Card(2, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
@@ -24,5 +24,21 @@ describe('Game', () => {
     const game1 = new Game(round1);
 
     expect(game1.currentRound).to.equal(round1);
+  })
+
+  it('should have a start method which creates new cards', () => {
+    const game1 = new Game(round1);
+
+    game1.start();
+
+    expect(game1.currentRound.).to.equal(round1);
+  })
+
+  it('should have a start method which creates a new round', () => {
+    const game1 = new Game(round1);
+
+    game1.start();
+
+    expect(game1.currentRound.).to.equal(round1);
   })
 })
