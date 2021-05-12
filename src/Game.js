@@ -7,12 +7,19 @@ const Turn = require('../src/Turn.js');
 const Round = require('../src/Round.js');
 
 class Game {
-  constructor(round) {
-    this.currentRound = round;
+  constructor() {
+    this.currentRound;
   }
 
-  start() {
-    
+  start(questions) {
+    let cards = questions.map((question) => {
+      let card = new Card(question.id, question.question, question.answers, question.correctAnswer);
+      return card;
+    })
+    let deck1 = new Deck(cards);
+    this.currentRound = new Round(deck1);
+    printMessage(deck1, this.currentRound);
+    printQuestion(this.currentRound);
   }
 
   printMessage(deck, round) {
