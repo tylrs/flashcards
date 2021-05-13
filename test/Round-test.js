@@ -147,6 +147,50 @@ describe('Round', () => {
     expect(percentage).to.equal(Math.floor(100 / 3));
   })
 
+  it('should have a start timer method which increments starting from 0', () => {
+    const round1 = new Round(deck1);
+
+    round1.startTimer(5);
+
+    expect(round1.timer).to.be.a('function');
+  })
+
+
+  it.only('should have a stop timer method which stops the timer and returns the time', () => {
+    const round1 = new Round(deck1);
+
+    let completedTime;
+    round1.startTimer(10);
+    let timeout = setTimeout(() => {
+      completedTime = round1.stopTimer()
+      console.log(completedTime);
+      expect(completedTime).to.equal(4);
+    }, 5000)
+
+  })
+
+  it ('should have a formatTime method which returns formatted time')
+
+  it('should have an endRound method which stops the time', () => {
+    const round1 = new Round(deck1);
+
+    round1.takeTurn('potato');
+    round1.takeTurn('potato');
+    round1.takeTurn('Fitzgerald');
+
+    let percentage = round1.calculatePercentageCorrect();
+
+    round1.startTimer(10);
+    let timeout = setTimeout(() => {
+      completedTime = round1.stopTimer()
+      console.log(completedTime);
+    }, 5000)
+
+    let message = round1.endRound(percentage);
+
+    expect(message).to.equal(`** Round over! ** You answered ${Math.floor(100 / 3)}% of the questions correctly! It took a total of ${}`);
+  })
+
   it('should have an endRound method', () => {
     const round1 = new Round(deck1);
 
