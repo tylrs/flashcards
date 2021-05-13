@@ -8,7 +8,7 @@ class Round {
     this.turn;
     this.incorrectGuesses = [];
     this.timer;
-    this.totalTime = 0;
+    this.totalTime;
   }
 
   returnCurrentCard() {
@@ -32,10 +32,9 @@ class Round {
   }
 
   startTimer(limit) {
-    let time = 0;
+    this.totalTime = 0;
     this.timer = setInterval(() => {
-      time ++;
-      this.totalTime = time;
+      this.totalTime ++;
       if (this.totalTime === limit) {
         clearInterval(this.timer);
       }
