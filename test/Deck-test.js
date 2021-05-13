@@ -51,7 +51,7 @@ describe('Deck', () => {
     expect(deck1.cards).to.deep.equal(questions);
   })
 
-  it('Should be able to know how many cards it has', () => {
+  it('Should be able to count the number of cards it has', () => {
     deck1 = new Deck(cards);
     let deckCount = deck1.countCards();
 

@@ -63,6 +63,6 @@ describe('Game', () => {
 
     game1.start(questions);
 
-    expect(game1.currentRound).to.deep.equal(round1);
+    expect(game1.currentRound).to.be.an.instanceOf(Round);
   })
 })

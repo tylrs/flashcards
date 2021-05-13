@@ -8,6 +8,12 @@ describe('Card', function() {
     expect(card).to.be.an.instanceof(Card);
   });
 
+  it('should store an id', function() {
+    const card = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
+
+    expect(card.id).to.equal(1);
+  });
+
   it('should store a question', function() {
     const card = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
 
