@@ -55,7 +55,7 @@ class Round {
     if (seconds < 10) {
       seconds = `0${seconds}`;
     }
-    let minutesSeconds = {minutes: minutes, seconds: seconds};
+    let minutesSeconds = {minutes, seconds};
     return minutesSeconds;
   }
 

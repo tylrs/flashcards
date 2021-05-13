@@ -110,12 +110,13 @@ describe('Round', () => {
     expect(round1.currentCard).to.deep.equal(questions[1]);
   })
 
-  it('should have a takeTurn method which stores incorrect guesses', () => {
+  it('should have a takeTurn method which stores incorrect guesses and does not store correct guesses', () => {
     const round1 = new Round(deck1);
 
     round1.takeTurn('potato');
+    round1.takeTurn('gallbladder');
 
-    expect(round1.incorrectGuesses[0]).to.equal(1);
+    expect(round1.incorrectGuesses.length).to.equal(1);
   })
 
   it('should have a takeTurn method which returns feedback if its correct or incorrect', () => {
@@ -140,7 +141,7 @@ describe('Round', () => {
     expect(percentage).to.equal(Math.floor(100 / 3));
   })
 
-  it('should have a start timer method which increments starting from 0', () => {
+  it('should have a start timer method which reassigns the timer property', () => {
     const round1 = new Round(deck1);
 
     round1.startTimer(5);
@@ -151,6 +152,7 @@ describe('Round', () => {
 
   it('should have a stop timer method which stops the timer and returns the time', () => {
     const round1 = new Round(deck1);
+    
     round1.totalTime = 120;
     let totalTime = round1.stopTimer();
 
@@ -160,9 +162,9 @@ describe('Round', () => {
   it('should have a formatTime method which returns formatted time', () => {
     const round1 = new Round(deck1);
 
-    let result = round1.formatTime(120);
+    let result = round1.formatTime(121);
 
-    expect(result).to.deep.equal({minutes: '02', seconds: '00'})
+    expect(result).to.deep.equal({minutes: '02', seconds: '01'})
   })
 
   it('should have an endRound method which returns a message', () => {
