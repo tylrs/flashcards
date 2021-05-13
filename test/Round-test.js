@@ -5,14 +5,40 @@ const Turn = require('../src/Turn.js');
 const Round = require('../src/Round.js');
 
 describe('Round', () => {
-  let card1, card2, card3, deck1;
+  let cards, deck1, questions;
 
   beforeEach('Setup', () => {
-    card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
-    card2 = new Card(2, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
-    card3 = new Card(3, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
-    deck1 = new Deck([card1, card2, card3]);
-    console.log(deck1.cards);
+    questions = [
+      {
+        id: 1,
+        question: 'What is Robbie\'s favorite animal',
+        answers: [ 'sea otter', 'pug', 'capybara' ],
+        correctAnswer: 'sea otter'
+      },
+      {
+        id: 2,
+        question: 'What organ is Khalid missing?',
+        answers: [ 'spleen', 'appendix', 'gallbladder' ],
+        correctAnswer: 'gallbladder'
+      },
+      {
+        id: 3,
+        question: 'What is Travis\'s middle name?',
+        answers: [ 'Lex', 'William', 'Fitzgerald' ],
+        correctAnswer: 'Fitzgerald'
+      },
+       {
+        id: 4,
+        question: 'Is Taylor Funny?',
+        answers: [ 'Yes', 'No', 'Sometimes' ],
+        correctAnswer: 'Sometimes'
+      }
+    ]
+    cards = questions.map((question) => {
+      let card = new Card(question.id, question.question, question.answers, question.correctAnswer);
+      return card;
+    })
+    deck1 = new Deck(cards);
   })
 
   it('should be an instance of the Round class', () => {
@@ -36,14 +62,14 @@ describe('Round', () => {
   it('should start out with the current card being the first card', () => {
     const round1 = new Round(deck1);
 
-    expect(round1.currentCard).to.deep.equal(card1);
+    expect(round1.currentCard).to.deep.equal(questions[0]);
   })
 
   it('should have a returnCurrentCard method', () => {
     const round1 = new Round(deck1);
     let currentCard1 = round1.returnCurrentCard()
 
-    expect(currentCard1).to.deep.equal(card1);
+    expect(currentCard1).to.deep.equal(questions[0]);
   })
 
   it('should have a takeTurn method which creates new turn instance', () => {
@@ -76,7 +102,7 @@ describe('Round', () => {
 
     round1.takeTurn('potato');
 
-    expect(round1.currentCard).to.deep.equal(card2);
+    expect(round1.currentCard).to.deep.equal(questions[1]);
   })
 
   it('should have an empty array for incorrect guesses', () => {

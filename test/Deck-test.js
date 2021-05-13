@@ -6,27 +6,32 @@ describe('Deck', () => {
   let cards, deck1, questions;
 
   beforeEach('Setup', () => {
-    questions = [{
-      "id": 1,
-      "question": "What allows you to define a set of related information using key-value pairs?",
-      "answers": ["object", "array", "function"],
-      "correctAnswer": "object"
-    }, {
-      "id": 2,
-      "question": "What is a comma-separated list of related values?",
-      "answers": ["array", "object", "function"],
-      "correctAnswer": "array"
-    }, {
-      "id": 3,
-      "question": "What type of prototype method directly modifies the existing array?",
-      "answers": ["mutator method", "accessor method", "iteration method"],
-      "correctAnswer": "mutator method"
-    }, {
-      "id": 4,
-      "question": "What type of prototype method does not modify the existing array but returns a particular representation of the array?",
-      "answers": ["mutator method", "accessor method", "iteration method"],
-      "correctAnswer": "accessor method"
-    }]
+    questions = [
+      {
+        id: 1,
+        question: 'What is Robbie\'s favorite animal',
+        answers: [ 'sea otter', 'pug', 'capybara' ],
+        correctAnswer: 'sea otter'
+      },
+      {
+        id: 2,
+        question: 'What organ is Khalid missing?',
+        answers: [ 'spleen', 'appendix', 'gallbladder' ],
+        correctAnswer: 'gallbladder'
+      },
+      {
+        id: 3,
+        question: 'What is Travis\'s middle name?',
+        answers: [ 'Lex', 'William', 'Fitzgerald' ],
+        correctAnswer: 'Fitzgerald'
+      },
+       {
+        id: 4,
+        question: 'Is Taylor Funny?',
+        answers: [ 'Yes', 'No', 'Sometimes' ],
+        correctAnswer: 'Sometimes'
+      }
+    ]
     cards = questions.map((question) => {
       let card = new Card(question.id, question.question, question.answers, question.correctAnswer);
       return card;
