@@ -27,7 +27,7 @@ describe('Round', () => {
         answers: [ 'Lex', 'William', 'Fitzgerald' ],
         correctAnswer: 'Fitzgerald'
       },
-       {
+      {
         id: 4,
         question: 'Is Taylor Funny?',
         answers: [ 'Yes', 'No', 'Sometimes' ],
