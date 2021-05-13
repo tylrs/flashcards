@@ -42,6 +42,14 @@ describe('Game', () => {
     round1 = new Round(deck1);
   })
 
+  it('should keep track of the current round', () => {
+    const game1 = new Game();
+
+    game1.start(questions);
+
+    expect(game1.currentRound).to.be.an.instanceOf(Round);
+  })
+
   it('should have a start method which creates new cards', () => {
     const game1 = new Game();
 
@@ -56,13 +64,5 @@ describe('Game', () => {
     game1.start(questions);
 
     expect(game1.currentRound.deck).to.deep.equal(deck1);
-  })
-
-  it('should keep track of the current round', () => {
-    const game1 = new Game();
-
-    game1.start(questions);
-
-    expect(game1.currentRound).to.deep.equal(round1);
   })
 })

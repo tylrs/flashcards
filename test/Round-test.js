@@ -65,11 +65,10 @@ describe('Round', () => {
     expect(round1.currentCard).to.deep.equal(questions[0]);
   })
 
-  it('should have a returnCurrentCard method', () => {
+  it('should have an empty array for incorrect guesses', () => {
     const round1 = new Round(deck1);
-    let currentCard1 = round1.returnCurrentCard()
 
-    expect(currentCard1).to.deep.equal(questions[0]);
+    expect(round1.incorrectGuesses).to.be.an('array');
   })
 
   it('should have a takeTurn method which creates new turn instance', () => {
@@ -80,13 +79,19 @@ describe('Round', () => {
     expect(round1.turn).to.be.an.instanceOf(Turn);
   })
 
-  it('should have a takeTurn method which takes in a user guess', () => {
+  it('should have a returnCurrentCard method', () => {
+    const round1 = new Round(deck1);
+    let currentCard1 = round1.returnCurrentCard()
+
+    expect(currentCard1).to.deep.equal(questions[0]);
+  })
+
+  it('should have a takeTurn method which creates a new turn instance', () => {
     const round1 = new Round(deck1);
 
     round1.takeTurn('potato');
-    let userGuess = round1.turn.returnGuess();
 
-    expect(userGuess).to.equal('potato');
+    expect(round1.turn).to.be.an.instanceOf(Turn);
   })
 
   it('should have a takeTurn method which updates turn count', () => {
@@ -105,34 +110,23 @@ describe('Round', () => {
     expect(round1.currentCard).to.deep.equal(questions[1]);
   })
 
-  it('should have an empty array for incorrect guesses', () => {
-    const round1 = new Round(deck1);
-
-    expect(round1.incorrectGuesses).to.be.an('array');
-  })
-
-  it('should have a takeTurn method which stores incorrect guesses', () => {
+  it('should have a takeTurn method which stores incorrect guesses and does not store correct guesses', () => {
     const round1 = new Round(deck1);
 
     round1.takeTurn('potato');
+    round1.takeTurn('gallbladder');
 
-    expect(round1.incorrectGuesses[0]).to.equal(1);
+    expect(round1.incorrectGuesses.length).to.equal(1);
   })
 
-  it('should have a takeTurn method which returns feedback if its correct', () => {
+  it('should have a takeTurn method which returns feedback if its correct or incorrect', () => {
     const round1 = new Round(deck1);
 
     let feedback = round1.takeTurn('sea otter');
+    let feedback2 = round1.takeTurn('potato');
 
     expect(feedback).to.equal('correct');
-  })
-
-  it('should have a takeTurn method which returns feedback if its incorrect', () => {
-    const round1 = new Round(deck1);
-
-    let feedback = round1.takeTurn('potato');
-
-    expect(feedback).to.equal('incorrect');
+    expect(feedback2).to.equal('incorrect');
   })
 
   it('should be able to calculate the percentage of correct answers', () => {
@@ -147,7 +141,7 @@ describe('Round', () => {
     expect(percentage).to.equal(Math.floor(100 / 3));
   })
 
-  it('should have a start timer method which increments starting from 0', () => {
+  it('should have a start timer method which reassigns the timer property', () => {
     const round1 = new Round(deck1);
 
     round1.startTimer(5);
@@ -158,6 +152,7 @@ describe('Round', () => {
 
   it('should have a stop timer method which stops the timer and returns the time', () => {
     const round1 = new Round(deck1);
+    
     round1.totalTime = 120;
     let totalTime = round1.stopTimer();
 
@@ -167,9 +162,9 @@ describe('Round', () => {
   it('should have a formatTime method which returns formatted time', () => {
     const round1 = new Round(deck1);
 
-    let result = round1.formatTime(120);
+    let result = round1.formatTime(121);
 
-    expect(result).to.deep.equal({minutes: '02', seconds: '00'})
+    expect(result).to.deep.equal({minutes: '02', seconds: '01'})
   })
 
   it('should have an endRound method which returns a message', () => {

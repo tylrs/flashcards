@@ -5,8 +5,8 @@ class Round {
     this.turns = 0;
     this.deck = deck;
     this.currentCard = deck.cards[0];
-    this.turn;
     this.incorrectGuesses = [];
+    this.turn;
     this.timer;
     this.totalTime;
   }
@@ -55,7 +55,7 @@ class Round {
     if (seconds < 10) {
       seconds = `0${seconds}`;
     }
-    let minutesSeconds = {minutes: minutes, seconds: seconds};
+    let minutesSeconds = {minutes, seconds};
     return minutesSeconds;
   }
 
