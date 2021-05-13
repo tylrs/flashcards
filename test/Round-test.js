@@ -1,4 +1,5 @@
 const expect = require('chai').expect;
+const sinon = require('sinon')
 const Card = require('../src/Card.js');
 const Deck = require('../src/Deck.js');
 const Turn = require('../src/Turn.js');
@@ -151,57 +152,40 @@ describe('Round', () => {
     const round1 = new Round(deck1);
 
     round1.startTimer(5);
+    round1.stopTimer();
 
-    expect(round1.timer).to.be.a('function');
+    expect(round1.timer).to.be.an('object');
   })
 
 
-  it.only('should have a stop timer method which stops the timer and returns the time', () => {
+  it.skip('should have a stop timer method which stops the timer and returns the time', () => {
+    const round1 = new Round(deck1);
+    let clock = sinon.useFakeTimers();
+
+    round1.startTimer(10);
+
+    expect().to.equal
+  })
+
+  it('should have a formatTime method which returns formatted time', () => {
     const round1 = new Round(deck1);
 
-    let completedTime;
-    round1.startTimer(10);
-    let timeout = setTimeout(() => {
-      completedTime = round1.stopTimer()
-      console.log(completedTime);
-      expect(completedTime).to.equal(4);
-    }, 5000)
+    let result = round1.formatTime(120);
 
+    expect(result).to.deep.equal({minutes: '02', seconds: '00'})
   })
 
-  it ('should have a formatTime method which returns formatted time')
-
-  it('should have an endRound method which stops the time', () => {
+  it.only('should have an endRound method which returns a message', () => {
     const round1 = new Round(deck1);
 
     round1.takeTurn('potato');
     round1.takeTurn('potato');
     round1.takeTurn('Fitzgerald');
 
-    let percentage = round1.calculatePercentageCorrect();
+    round1.totalTime = 120;
 
-    round1.startTimer(10);
-    let timeout = setTimeout(() => {
-      completedTime = round1.stopTimer()
-      console.log(completedTime);
-    }, 5000)
+    let message = round1.endRound();
 
-    let message = round1.endRound(percentage);
-
-    expect(message).to.equal(`** Round over! ** You answered ${Math.floor(100 / 3)}% of the questions correctly! It took a total of ${}`);
-  })
-
-  it('should have an endRound method', () => {
-    const round1 = new Round(deck1);
-
-    round1.takeTurn('potato');
-    round1.takeTurn('potato');
-    round1.takeTurn('Fitzgerald');
-
-    let percentage = round1.calculatePercentageCorrect();
-
-    let message = round1.endRound(percentage);
-
-    expect(message).to.equal(`** Round over! ** You answered ${Math.floor(100 / 3)}% of the questions correctly!`);
+    expect(message).to.equal(`** Round over! ** You answered ${Math.floor(100 / 3)}% of the questions correctly and finished in 02 minutes and 00 seconds`);
   })
 })
