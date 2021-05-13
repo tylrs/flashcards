@@ -13,7 +13,8 @@ This is a basic flashcards application which can be played in the command line i
 
 ## Demonstration of Application
 User can change game mode after playing a round
-![alt text](./gifs/change-game-2.gif)
+![alt text](./gifs/game-demonstration.gif)
+![alt text](./gifs/timer-percentage.gif)
 
 ### Technologies
 - JavaScript
