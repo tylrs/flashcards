@@ -2,14 +2,10 @@ const expect = require('chai').expect;
 const Game = require('../src/Game.js');
 const Card = require('../src/Card.js');
 const Deck = require('../src/Deck.js');
-const Turn = require('../src/Turn.js');
 const Round = require('../src/Round.js');
 
 describe('Game', () => {
-  let cards;
-  let deck1;
-  let round1;
-  let questions;
+  let cards, deck1, round1, questions;
 
   beforeEach('Setup', () => {
     questions = [{

@@ -5,15 +5,14 @@ const Turn = require('../src/Turn.js');
 const Round = require('../src/Round.js');
 
 describe('Round', () => {
-  let card1;
-  let card2;
-  let card3;
-  let deck1;
+  let card1, card2, card3, deck1;
+
   beforeEach('Setup', () => {
     card1 = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
     card2 = new Card(2, 'What organ is Khalid missing?', ['spleen', 'appendix', 'gallbladder'], 'gallbladder');
     card3 = new Card(3, 'What is Travis\'s middle name?', ['Lex', 'William', 'Fitzgerald'], 'Fitzgerald');
     deck1 = new Deck([card1, card2, card3]);
+    console.log(deck1.cards);
   })
 
   it('should be an instance of the Round class', () => {
@@ -119,7 +118,7 @@ describe('Round', () => {
 
     let percentage = round1.calculatePercentageCorrect();
 
-    expect(percentage).to.equal(Math.floor(100/3));
+    expect(percentage).to.equal(Math.floor(100 / 3));
   })
 
   it('should have an endRound method', () => {
@@ -133,6 +132,6 @@ describe('Round', () => {
 
     let message = round1.endRound(percentage);
 
-    expect(message).to.equal(`** Round over! ** You answered ${Math.floor(100/3)}% of the questions correctly!`);
+    expect(message).to.equal(`** Round over! ** You answered ${Math.floor(100 / 3)}% of the questions correctly!`);
   })
 })
