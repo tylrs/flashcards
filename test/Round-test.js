@@ -147,17 +147,42 @@ describe('Round', () => {
     expect(percentage).to.equal(Math.floor(100 / 3));
   })
 
-  it('should have an endRound method', () => {
+  it('should have a start timer method which increments starting from 0', () => {
+    const round1 = new Round(deck1);
+
+    round1.startTimer(5);
+    round1.stopTimer();
+
+    expect(round1.timer).to.be.an('object');
+  })
+
+  it('should have a stop timer method which stops the timer and returns the time', () => {
+    const round1 = new Round(deck1);
+    round1.totalTime = 120;
+    let totalTime = round1.stopTimer();
+
+    expect(totalTime).to.equal(120);
+  })
+
+  it('should have a formatTime method which returns formatted time', () => {
+    const round1 = new Round(deck1);
+
+    let result = round1.formatTime(120);
+
+    expect(result).to.deep.equal({minutes: '02', seconds: '00'})
+  })
+
+  it('should have an endRound method which returns a message', () => {
     const round1 = new Round(deck1);
 
     round1.takeTurn('potato');
     round1.takeTurn('potato');
     round1.takeTurn('Fitzgerald');
 
-    let percentage = round1.calculatePercentageCorrect();
+    round1.totalTime = 120;
 
-    let message = round1.endRound(percentage);
+    let message = round1.endRound();
 
-    expect(message).to.equal(`** Round over! ** You answered ${Math.floor(100 / 3)}% of the questions correctly!`);
+    expect(message).to.equal(`** Round over! ** You answered ${Math.floor(100 / 3)}% of the questions correctly and finished in 02 minutes and 00 seconds`);
   })
 })

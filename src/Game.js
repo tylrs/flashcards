@@ -15,6 +15,7 @@ class Game {
     })
     let deck1 = new Deck(cards);
     this.currentRound = new Round(deck1);
+    this.currentRound.startTimer(1000);
     this.printMessage(deck1);
     this.printQuestion(this.currentRound);
   }
