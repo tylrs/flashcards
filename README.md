@@ -12,8 +12,10 @@ Turing 2103 FE Mod 2 First Solo Project
 This is a basic flashcards application which can be played in the command line interface. Users will be prompted with various questions about JavaScript. They can select between multiple choices and will receive feedback about whether their answer was correct or incorrect. The percentage of questions they answered correctly will be displayed at the end once they have answered all questions
 
 ## Demonstration of Application
-User can change game mode after playing a round
+Flashcards can be played in the terminal and will give feedback on if user answers are correct or incorrect
 ![alt text](./gifs/game-demonstration.gif)
+
+After all flashcards have been shown, a message will display showing the percentage of correct answers and the total time it took to complete the round.
 ![alt text](./gifs/timer-percentage.gif)
 
 ### Technologies
